@@ -1,14 +1,16 @@
 function toggleVoice(enable) {
+  const status = document.getElementById("voice-status");
   if (annyang) {
     if (enable) {
       annyang.start();
-      console.log("Voice ON");
+      if (status) status.innerText = "🎙️ Voice ON";
     } else {
       annyang.abort();
-      console.log("Voice OFF");
+      if (status) status.innerText = "🔇 Voice OFF";
     }
   } else {
     console.warn("Annyang not supported");
+    if (status) status.innerText = "🚫 Voice Not Supported";
   }
 }
 
@@ -27,6 +29,4 @@ if (annyang) {
   };
 
   annyang.addCommands(commands);
-  // Remove this line:
-  // annyang.start();
 }
