@@ -2,9 +2,13 @@ function toggleVoice(enable) {
   if (annyang) {
     if (enable) {
       annyang.start();
+      console.log("Voice ON");
     } else {
       annyang.abort();
+      console.log("Voice OFF");
     }
+  } else {
+    console.warn("Annyang not supported");
   }
 }
 
@@ -23,7 +27,6 @@ if (annyang) {
   };
 
   annyang.addCommands(commands);
-  annyang.start(); // ✅ Start listening automatically
-} else {
-  console.warn('Annyang not supported');
+  // Remove this line:
+  // annyang.start();
 }
