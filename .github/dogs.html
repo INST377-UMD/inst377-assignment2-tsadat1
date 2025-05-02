@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dogs Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="js/common.js" defer></script>
+  <script src="libs/simple-slider.js" defer></script>
+  <script src="js/dogs.js" defer></script>
+</head>
+<body>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stocks.html">Stocks</a></li>
+      <li><a href="dogs.html">Dogs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Dog Fun Zone</h1>
+    <div id="dogCarousel" class="slider"></div>
+
+    <h2>Dog Breeds</h2>
+    <div id="breedButtons"></div>
+
+    <div id="breedInfo" class="hidden">
+      <h3 id="breedName"></h3>
+      <p id="breedDesc"></p>
+      <p>Min Life Span: <span id="minLife"></span></p>
+      <p>Max Life Span: <span id="maxLife"></span></p>
+    </div>
+  </main>
+
+  <section class="audio-controls">
+    <h2>Audio Commands (Voice Control)</h2>
+    <ul>
+      <li>Say "Hello" - Shows alert "Hello World"</li>
+      <li>Say "Change the color to blue/red/etc" - Changes background</li>
+      <li>Say "Navigate to home/stocks/dogs" - Opens that page</li>
+    </ul>
+    <button onclick="toggleVoice(true)">Turn On Audio</button>
+    <button onclick="toggleVoice(false)">Turn Off Audio</button>
+  </section>
+</body>
+</html>
