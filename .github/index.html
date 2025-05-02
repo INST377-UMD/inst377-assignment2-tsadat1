@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Activities - Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/home.js" defer></script>
+</head>
+<body>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stocks.html">Stocks</a></li>
+      <li><a href="dogs.html">Dogs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Welcome to the Class Activities App</h1>
+    <p id="quote">Loading inspirational quote...</p>
+
+    <div class="button-container">
+      <button class="custom-button" onclick="location.href='stocks.html'">Go to Stocks</button>
+      <button class="custom-button" onclick="location.href='dogs.html'">Go to Dogs</button>
+    </div>
+  </main>
+
+  <section class="audio-controls">
+    <h2>Audio Commands (Voice Control)</h2>
+    <ul>
+      <li>Say "Hello" - Shows alert "Hello World"</li>
+      <li>Say "Change the color to blue/red/etc" - Changes background</li>
+      <li>Say "Navigate to home/stocks/dogs" - Opens that page</li>
+    </ul>
+    <button onclick="toggleVoice(true)">Turn On Audio</button>
+    <button onclick="toggleVoice(false)">Turn Off Audio</button>
+  </section>
+</body>
+</html>
