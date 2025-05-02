@@ -1,3 +1,4 @@
+
 let chart;
 
 function fetchStockData(days = 30) {
@@ -10,7 +11,7 @@ function fetchStockData(days = 30) {
   const from = startDate.toISOString().split('T')[0];
   const to = endDate.toISOString().split('T')[0];
 
-  const apiKey = 'YOUR_POLYGON_API_KEY';
+  const apiKey = 'kTBAlpiI0sK7RgVLCIwkM53rkjNSIftC';
   const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${from}/${to}?adjusted=true&sort=asc&limit=120&apiKey=${apiKey}`;
 
   fetch(url)
@@ -43,9 +44,14 @@ function fetchStockData(days = 30) {
 }
 
 function fetchRedditStocks() {
-  fetch('https://tradestie.com/api/v1/apps/reddit?date=2022-04-03')
+  fetch("https://tradestie.com/api/v1/apps/reddit?date=2022-04-03")
     .then(res => res.json())
     .then(data => {
+      if (!data || !data.length) {
+        document.querySelector('#redditStocks tbody').innerHTML = '<tr><td colspan="3">No data found</td></tr>';
+        return;
+      }
+
       const top5 = data.slice(0, 5);
       const tbody = document.querySelector('#redditStocks tbody');
       tbody.innerHTML = '';
@@ -53,7 +59,6 @@ function fetchRedditStocks() {
       top5.forEach(stock => {
         const row = document.createElement('tr');
         const icon = stock.sentiment === 'Bullish' ? '📈' : '📉';
-
         row.innerHTML = `
           <td><a href="https://finance.yahoo.com/quote/${stock.ticker}" target="_blank">${stock.ticker}</a></td>
           <td>${stock.no_of_comments}</td>
@@ -62,18 +67,12 @@ function fetchRedditStocks() {
         tbody.appendChild(row);
       });
     })
-    .catch(err => console.error('Failed to load Reddit stocks:', err));
+    .catch(err => {
+      console.error('Failed to load Reddit stocks:', err);
+      document.querySelector('#redditStocks tbody').innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchRedditStocks();
-
-  if (annyang) {
-    annyang.addCommands({
-      'lookup *ticker': ticker => {
-        document.getElementById('ticker').value = ticker.toUpperCase();
-        fetchStockData(30);
-      }
-    });
-  }
 });
