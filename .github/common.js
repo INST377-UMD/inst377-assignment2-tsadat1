@@ -8,9 +8,6 @@ function toggleVoice(enable) {
       annyang.abort();
       if (status) status.innerText = "🔇 Voice OFF";
     }
-  } else {
-    console.warn("Annyang not supported");
-    if (status) status.innerText = "🚫 Voice Not Supported";
   }
 }
 
